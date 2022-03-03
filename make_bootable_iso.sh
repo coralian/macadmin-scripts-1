@@ -20,7 +20,7 @@ if [ -z "$1" ]
   then
     os_ver="12.2.1"
 else
-    os_ver = $1
+    os_ver=$1
 fi
 
 if [ -z "$2" ]
