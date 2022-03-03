@@ -50,8 +50,8 @@ hdiutil attach "$output_name.sparseimage"
 
 Echo "Create bootable install media on temp disk image"
 /Volumes/$output_name/Applications/Install\ macOS\ $os_name.app/Contents/Resources/createinstallmedia --volume /Volumes/install_build --nointeraction
-hdiutil detach "/Volumes/Install macOS $os_name"
-hdiutil detach /Volumes/$output_name
+hdiutil detach "/Volumes/Install macOS $os_name" -force
+hdiutil detach /Volumes/$output_name -force
 hdiutil convert $output_name.cdr.dmg -format UDTO -o $output_name.iso
 mv $output_name.iso.cdr $output_name.iso
 
