@@ -855,6 +855,12 @@ def main():
         action="store_true",
         help="Search only for InstallAssistant packages (macOS Big Sur only)",
     )
+    parser.add_argument(
+        "--file_name",
+        metavar="name_of_image_file",
+        default="",
+        help="Specify Output file name",
+    )
     args = parser.parse_args()
 
     # show this Mac's info
@@ -1273,10 +1279,13 @@ def main():
         )
 
         # generate a name for the sparseimage
-        volname = "Install_macOS_%s-%s" % (
-            product_info[product_id]["version"],
-            product_info[product_id]["BUILD"],
-        )
+        if args.file_name:
+            volname = str(args.file_name)
+        else:
+            volname = "Install_macOS_%s-%s" % (
+                product_info[product_id]["version"],
+                product_info[product_id]["BUILD"],
+            )
         sparse_diskimage_path = os.path.join(args.workdir, volname + ".sparseimage")
         if os.path.exists(sparse_diskimage_path):
             os.unlink(sparse_diskimage_path)
